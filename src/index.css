@@ -1,28 +1,41 @@
 @import "tailwindcss";
 
-/* ─── Custom design tokens ─────────────────────────────────── */
+/* ─── Design tokens ────────────────────────────────────────────────────────── */
 :root {
-  --navy:      #0A0F1E;
-  --navy-mid:  #0D1530;
-  --navy-card: rgba(13, 21, 48, 0.6);
-  --blue:      #0066FF;
-  --blue-glow: rgba(0, 102, 255, 0.25);
+  --navy:        #0A0F1E;
+  --navy-mid:    #0D1530;
+  --navy-card:   rgba(13, 21, 48, 0.55);
+  --blue:        #0066FF;
+  --blue-light:  #60A5FA;
+  --blue-glow:   rgba(0, 102, 255, 0.28);
+  --indigo:      #6366F1;
   --glass-border: rgba(255, 255, 255, 0.08);
+
+  /* Typography */
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
 }
 
-/* ─── Base reset ───────────────────────────────────────────── */
+/* ─── Base ─────────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   background-color: var(--navy);
-  color: #E2E8F0;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #CBD5E1;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Apply display font to all headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  color: #F1F5F9;
 }
 
 #root {
@@ -31,20 +44,86 @@ body {
   flex-direction: column;
 }
 
-/* ─── Glassmorphism card utility ───────────────────────────── */
+/* ─── Gradient text ────────────────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #0066FF 0%, #60A5FA 55%, #818CF8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glassmorphism card ───────────────────────────────────────────────────── */
 .glass-card {
   background: var(--navy-card);
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
-/* ─── Blue glow utility ────────────────────────────────────── */
+/* ─── Blue glow ────────────────────────────────────────────────────────────── */
 .glow-blue {
-  box-shadow: 0 0 24px var(--blue-glow), 0 0 48px rgba(0, 102, 255, 0.1);
+  box-shadow: 0 0 28px var(--blue-glow), 0 0 56px rgba(0, 102, 255, 0.1);
 }
 
-/* ─── Custom scrollbar ─────────────────────────────────────── */
-::-webkit-scrollbar        { width: 6px; }
+/* ─── Gradient border card (uses pseudo-element technique) ────────────────── */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(0,102,255,0.6), rgba(99,102,241,0.3), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ─── Floating orb animation (hero background) ─────────────────────────────── */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33%       { transform: translateY(-30px) translateX(15px); }
+  66%       { transform: translateY(15px) translateX(-20px); }
+}
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50%       { transform: translateY(-45px) translateX(25px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.8; }
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+}
+.orb-1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(0,102,255,0.25) 0%, transparent 70%);
+  top: -100px; left: -100px;
+  animation: float-slow 12s ease-in-out infinite;
+}
+.orb-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%);
+  top: 20%; right: -80px;
+  animation: float-medium 9s ease-in-out infinite;
+}
+.orb-3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(0,102,255,0.15) 0%, transparent 70%);
+  bottom: 10%; left: 30%;
+  animation: float-slow 15s ease-in-out infinite reverse;
+}
+
+/* ─── Scrollbar ────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 5px; }
 ::-webkit-scrollbar-track  { background: var(--navy); }
-::-webkit-scrollbar-thumb  { background: var(--blue); border-radius: 3px; }
+::-webkit-scrollbar-thumb  { background: rgba(0,102,255,0.6); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--blue); }

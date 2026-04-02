@@ -186,8 +186,9 @@ export default function Contact() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className="text-4xl sm:text-5xl font-black text-white mb-4"
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
-          Contact Us
+          Contact <span className="gradient-text">Us</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 15 }}
@@ -303,9 +304,10 @@ export default function Contact() {
                     type="submit"
                     disabled={loading}
                     className="w-full py-3 rounded-xl font-semibold text-white transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-70"
-                    style={{ background: '#0066FF' }}
-                    onMouseEnter={(e) => { if (!loading) e.currentTarget.style.background = '#0052CC'; }}
-                    onMouseLeave={(e) => { if (!loading) e.currentTarget.style.background = '#0066FF'; }}
+                    style={{
+                      background: 'linear-gradient(135deg, #0066FF, #3B82F6)',
+                      fontFamily: "'Space Grotesk', sans-serif",
+                    }}
                   >
                     {loading ? (
                       <>

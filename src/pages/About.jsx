@@ -170,8 +170,10 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6"
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            About ITC
+            About{' '}
+            <span className="gradient-text">ITC</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -261,10 +263,11 @@ export default function About() {
           >
             <Link
               to="/contact"
-              className="inline-block px-8 py-3 rounded-xl font-semibold text-white transition-all duration-200 glow-blue"
-              style={{ background: '#0066FF' }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = '#0052CC')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = '#0066FF')}
+              className="inline-block px-8 py-3 rounded-xl font-semibold text-white transition-all duration-200 glow-blue hover:brightness-110"
+              style={{
+                background: 'linear-gradient(135deg, #0066FF, #3B82F6)',
+                fontFamily: "'Space Grotesk', sans-serif",
+              }}
             >
               Get In Touch
             </Link>

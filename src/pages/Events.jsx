@@ -137,8 +137,9 @@ export default function Events() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className="text-4xl sm:text-5xl font-black text-white mb-4"
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
-          Events
+          <span className="gradient-text">Events</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 15 }}

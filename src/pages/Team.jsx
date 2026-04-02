@@ -115,8 +115,9 @@ export default function Team() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className="text-4xl sm:text-5xl font-black text-white mb-4"
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
         >
-          Meet The Team
+          Meet The <span className="gradient-text">Team</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 15 }}
