@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+/* ─── Custom design tokens ─────────────────────────────────── */
+:root {
+  --navy:      #0A0F1E;
+  --navy-mid:  #0D1530;
+  --navy-card: rgba(13, 21, 48, 0.6);
+  --blue:      #0066FF;
+  --blue-glow: rgba(0, 102, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Base reset ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--navy);
+  color: #E2E8F0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Glassmorphism card utility ───────────────────────────── */
+.glass-card {
+  background: var(--navy-card);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ─── Blue glow utility ────────────────────────────────────── */
+.glow-blue {
+  box-shadow: 0 0 24px var(--blue-glow), 0 0 48px rgba(0, 102, 255, 0.1);
+}
+
+/* ─── Custom scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--navy); }
+::-webkit-scrollbar-thumb  { background: var(--blue); border-radius: 3px; }
